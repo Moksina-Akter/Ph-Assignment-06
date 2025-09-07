@@ -22,21 +22,61 @@
 </head>
 <body class="inter">
    <header class="bg-[#15803D]">
-    <nav class="md:w-11/12 mx-auto p-8 text-white">
+    <nav class="md:w-11/12 mx-auto p-7 text-white">
      <div class="flex justify-between items-center">
         <h1 class="text-2xl">Green Earth</h1>
-        <ul class=" flex justify-between items-center gap-5">
+        <ul class=" md:flex justify-between items-center gap-5">
             <li>About</li>
             <li>Gallery</li>
             <li>Plant a Tree</li>
         </ul>
-        <button class="bg-[#facc15] text-[#15803d] py-1 px-3 rounded-2xl">Plant a Tree</button>
+        <button class=" bg-[#facc15] text-[#15803d] py-1 px-3 rounded-2xl">Plant a Tree</button>
      </div>
      </nav>
    </header>
 
+   <!-- banner  -->
+    <section class="bg-[#cff0dc]">
+        <div class="grid md:grid-cols-12">
+            <div class="md:col-span-3">
+                <img src="./assets/hero-leaf1.png" alt="">
+            </div>
+            <div class="md:col-span-6 flex justify-center items-center">
+              <div class="text-center space-y-4">
+                <h1 class="md:text-5xl text-3xl mt-3 font-bold text-[#1f2937]">Plant a Tree, Grow a Future</h1>
+                <p class="font-normal text-[#1f2937]">Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+                <button class=" bg-[#facc15] text-[#15803d] py-1 px-3 rounded-2xl">Get Involved</button>
+              </div>
+            </div>
+            <div class="md:col-span-3">
+                <img src="./assets/hero-leaf2.png" alt="">
+            </div>
+        </div>
+    </section>
 
-    <main></main>
+    <main class="bg-[#F0FDF4]">
+
+        <h1 class="text-3xl  font-bold text-[#1f2937] text-center  pt-20 p-10">Choose Your Trees</h1>
+       
+       <section class="grid md:grid-cols-12 md:w-11/12 mx-auto">
+        <div class="col-span-2">
+            <h1 class="text-xl font-bold mb-2">Categories</h1>
+            <ul id="catagoryContainer" class="space-y-2">
+               <li class="hover:bg-[#15803d] p-1 rounded hover:text-[#ffffff] text-[#1f2937]">All Trees</li>
+            </ul>
+
+        </div>
+        <div class="col-span-8">
+            <div>
+
+            </div>
+        </div>
+        <div class="col-span-2">
+           <h1>Your Cart</h1>
+        </div>
+
+       </section>
+    </main>
     <footer></footer>
     
     <script src="./index.js"></script>
