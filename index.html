@@ -21,7 +21,7 @@
       </style>
 </head>
 <body class="inter">
-   <header class="bg-[#15803D]  fixed top-0 left-0 right-0 w-full">
+   <header class="bg-[#15803D]  md:fixed md:top-0 md:left-0 md:right-0 w-full">
     <nav class="md:w-11/12 mx-auto p-7 text-white">
      <div class="flex justify-between items-center">
         <h1 class="text-2xl">Green Earth</h1>
@@ -36,7 +36,7 @@
    </header>
 
    <!-- banner  -->
-    <section class="bg-[#cff0dc] mt-20">
+    <section class="bg-[#cff0dc] md:mt-20">
         <div class="grid md:grid-cols-12">
             <div class="md:col-span-3">
                 <img src="./assets/hero-leaf1.png" alt="">
@@ -58,23 +58,23 @@
 
         <h1 class="text-3xl  font-bold text-[#1f2937] text-center  pt-20 p-10">Choose Your Trees</h1>
        
-       <section class="grid md:grid-cols-12 md:w-11/12 mx-auto">
-        <div class="col-span-2">
+       <section class="grid md:grid-cols-12 md:max-w-7xl mx-auto gap-4">
+        <div class="md:col-span-2">
             <h1 class="text-xl font-bold mb-2">Categories</h1>
             <ul id="catagoryContainer" class="space-y-2">
-               <li class="hover:bg-[#15803d] p-1 rounded hover:text-[#ffffff] text-[#1f2937]">All Trees</li>
+               <li class="hover:bg-[#15803d] p-1 mt-5 rounded hover:text-[#ffffff] text-[#1f2937]">All Trees</li>
             </ul>
 
         </div>
 
-        <div id="card-container" class="col-span-8 grid grid-cols-3 gap-5">
+        <div id="card-container" class="md:col-span-8 grid md:grid-cols-3 gap-5">
 
            
 
         </div>
 
-        <div class="col-span-2">
-           <h1>Your Cart</h1>
+        <div class="md:col-span-2 bg-white h-full rounded-md p-3">
+           <h1 class="text-xl font-bold">Your Cart</h1>
         </div>
 
        </section>
@@ -82,5 +82,6 @@
     <footer></footer>
     
     <script src="./index.js"></script>
+    
 </body>
 </html>
