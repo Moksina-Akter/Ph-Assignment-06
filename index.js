@@ -5,6 +5,7 @@ const cartContainer = document.getElementById('cartContainer');
 const modalContainer = document.getElementById('modalContainer');
 const modalDetails = document.getElementById('modalDetails');
 const spinner = document.getElementById('spinner');
+const totalPrice = document.getElementById('total');
 
 
 //alltrees
@@ -162,6 +163,7 @@ const loading = () => {
 
  //cart part
 let allCart = [];
+let total = 0;
 
 plantCardContainer.addEventListener('click', (e) => {
     if (e.target.innerText === 'Add to Cart') {
@@ -173,16 +175,24 @@ plantCardContainer.addEventListener('click', (e) => {
 const handleCart = (e) => {
     const name = e.target.parentNode.childNodes[3].innerText;
     const price = e.target.parentNode.childNodes[7].childNodes[3].innerText;
+    const priceFloat = parseFloat(price.replace('৳','').trim());
+    // console.log(price);
     const id = e.target.parentNode.id;
 
-    const isExist = allCart.find(item => item.id === id);
-    if (!isExist) {
-        allCart.push({
+    const findNum = allCart.find(item => item.id === id);
+    if (findNum) {
+       findNum.item = findNum.item + 1; 
+    }
+    else{
+         allCart.push({
             name: name,
-            price: price,
-            id: id
+            price: priceFloat,
+            id: id,
+            item:1
         });
     }
+    total = priceFloat + total;
+    totalPrice.innerText = "৳"+ total;
     showCart(allCart);
 
      alert(`${name} has been added to the cart.`)
@@ -196,7 +206,7 @@ const showCart = (carts) => {
         <div class="bg-[#F0FDF4] mt-4 p-2 rounded flex justify-between items-center">
             <div> 
                 <h1 class="font-bold text-xl">${cart.name}</h1>
-                <p class="text-gray-600">${cart.price} <span> × 1 </span></p>
+                <p class="text-gray-600">${cart.price} <span> × ${cart.item} </span></p>
             </div>
             <button onclick="handleDelete('${cart.id}')" class=" text-red-700">❌</button>
         </div>
@@ -206,9 +216,17 @@ const showCart = (carts) => {
 }
 
 //handle delete part
-const handleDelete = (id) => {
-   const filtered = allCart.filter(carts => carts.id !== id);
-   allCart = filtered;
+const handleDelete = (idDel) => {
+   const remove = allCart.find(cart => cart.id === idDel)
+   if (remove) {
+     total = total - remove.price;
+     totalPrice.innerText = "৳"+ total;
+     remove.item = remove.item - 1;
+   }
+   if (remove.item === 0) {
+      allCart = allCart.filter(carts => carts.id !== idDel);
+   }
+   
    showCart(allCart);
 }
 
