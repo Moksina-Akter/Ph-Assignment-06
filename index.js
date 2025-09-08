@@ -3,7 +3,6 @@ const catagoryContainer = document.getElementById('catagoryContainer');
 const plantCardContainer = document.getElementById('card-container');
 const cartContainer = document.getElementById('cartContainer');
 
-let cart = [];
 
 //alltrees
 const allTrees = () =>{
@@ -58,7 +57,7 @@ const showCategory = (categories) => {
         categories.forEach(category => {
             catagoryContainer.innerHTML += ` 
              
-                <li id="${category.id}" class="hover:bg-[#0ee15c] p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">${category.category_name}</li>
+                <li id="${category.id}" class="hover:bg-[#11d158] p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">${category.category_name}</li>
             `;
             
         });
@@ -69,7 +68,6 @@ const showCategory = (categories) => {
                     li.classList.remove('text-[#ffffff]')
                 })
                 if (event.target.localName === 'li') {
-                    //console.log(event.target);
                     event.target.classList.add('bg-[#15803d]')
                     event.target.classList.add('text-[#ffffff]')
                     plantCategory(event.target.id)
@@ -97,7 +95,7 @@ const plantCategory = (cardId) =>{
     plantCardContainer.innerHTML = "";
     plants.forEach( plant => {
         plantCardContainer.innerHTML += `
-           <div class="p-4 space-y-2 bg-white rounded-md shadow-lg">
+           <div id="${plant.id}" class="p-4 space-y-2 bg-white rounded-md shadow-lg">
                  <div class="h-[220px]">
                     <img class="w-full h-full rounded " src="${plant.image}" alt="">
                  </div>
@@ -105,7 +103,7 @@ const plantCategory = (cardId) =>{
                  <p>${plant.description}</p>
                 <div class="flex justify-between items-center">
                     <h2 class="bg-[#dcfce7] text-[#15803d] py-1 px-2 rounded-2xl">${plant.category}</h2>
-                   <h3>৳<span class="text-[#15803d]">${plant.price}</span></h3>
+                    <h3 class="text-[#15803d]">৳<span class="font-bold">${plant.price}</span></h3>
                </div>
               <button class="btn bg-[#15803d] w-full py-1 px-2 rounded-3xl text-white">Add to Cart</button>      
              </div>
@@ -115,36 +113,44 @@ const plantCategory = (cardId) =>{
 
 
  //cart part
+let allCart = [];
 plantCardContainer.addEventListener('click', (e) => {
     if (e.target.innerText === 'Add to Cart') {
         handleCart(e);
     }
 });
 
+
 const handleCart = (e) => {
     const name = e.target.parentNode.childNodes[3].innerText;
     const price = e.target.parentNode.childNodes[7].childNodes[3].innerText;
     const id = e.target.parentNode.id;
-    console.log(id)
-   
-        cart.push({
-          name: name,
-          price: price
-        })
-        showCart(cart);
+    // console.log(id)
+
+    const isExist = allCart.find(item => item.id === id);
+    if (!isExist) {
+        allCart.push({
+            name: name,
+            price: price,
+            id: id
+        });
+    }
+
+    showCart(allCart);
+        // console.log(cart)
 }
 
 //show cart
 const showCart = (carts) => {
    cartContainer.innerHTML = '';
-   carts.forEach ( cart =>{
+   carts.forEach ( cart => {
      cartContainer.innerHTML += `
         <div class="bg-[#F0FDF4] mt-4 p-2 rounded flex justify-between items-center">
             <div> 
                 <h1 class="font-bold text-xl">${cart.name}</h1>
                 <p>${cart.price}</p>
             </div>
-            <button onclick="handleDelete('${cart.id}')" class="text-red-700">❌</button>
+            <button onclick="handleDelete('${cart.id}')" class=" text-red-700">❌</button>
         </div>
 
      `;
@@ -152,9 +158,16 @@ const showCart = (carts) => {
 }
 
 //handle delete part
-const handleDelete = (deleteId) => {
-   const filtered = cart.filter(cart => cart.id !== deleteId);
-   cart = filtered;
+const handleDelete = (id) => {
+    // console.log(id.id)
+//    const removeCard = allCart.find(cart => cart.id === id);
+//    if (!removeCard) {
+//      allCart.push({name, price, id});
+//    } 
+
+   const filtered = allCart.filter(carts => carts.id !== id);
+   allCart = filtered;
+   showCart(allCart);
 }
 
 
