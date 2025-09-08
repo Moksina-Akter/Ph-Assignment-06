@@ -24,7 +24,7 @@
    <header class="bg-[#15803D]  md:fixed md:top-0 md:left-0 md:right-0 w-full">
     <nav class="md:w-11/12 mx-auto p-7 text-white">
      <div class="flex justify-between items-center">
-        <h1 class="text-2xl">Green Earth</h1>
+        <h1 class="text-2xl"><span class="text-4xl rotate-180">🌱</span>Green Earth</h1>
         <ul class=" md:flex justify-between items-center gap-5">
             <li>About</li>
             <li>Gallery</li>
@@ -56,31 +56,37 @@
 
     <main class="bg-[#F0FDF4]">
 
-        <h1 class="text-3xl  font-bold text-[#1f2937] text-center  pt-20 p-10">Choose Your Trees</h1>
+       <div id="spinner" class="text-center ">
+            
+         </div>
+
+        <h1 class="text-3xl  font-bold text-[#1f2937] text-center  md:pt-20 p-10">Choose Your Trees</h1>
        
        <section class="grid md:grid-cols-12 md:max-w-7xl mx-auto gap-4">
         <div class="md:col-span-2">
-            <h1 class="text-xl font-bold mb-2">Categories</h1>
+            <h1 class="text-xl font-bold mb-2 ">Categories</h1>
             <ul id="catagoryContainer" class="space-y-2">
-               <li class="hover:bg-[#0ee15c] p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">All Trees</li>
+               <li class="hover:bg-[#0ee15c] pl-5 md:p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">All Trees</li>
             </ul>
 
         </div>
 
         <div id="card-container" class="md:col-span-8 grid md:grid-cols-3 gap-5">
-        </div>
+
+ <div id="spinner" class="text-center ">   </div>
+         </div>
 
         <div class="md:col-span-2 bg-white h-full rounded-md p-3">
             <div><h1 class="text-xl font-bold">Your Cart</h1></div>
             <div id="cartContainer"> </div>
-            <div><h1 class="text-end font-bold">Total: </h1></div>
+            <div><h1 class="text-center mt-4 font-bold">Total: <span>0</span> </h1></div>
         </div>
 
        </section>
 
 
 
-    <section class="md:max-w-4xl mx-auto mt-5">
+    <section class="md:max-w-4xl mx-auto mt-5 md:pb-28">
         <h1 class="text-3xl font-bold text-[#1f2937] text-center  pt-20 p-10">About the Campaign</h1>
        <div class="md:flex justify-between items-center gap-9">
          <div class="md:w-1/2">
@@ -96,13 +102,77 @@
           </div>
         </div>
       </section>
+
     </main>
 
+    <section class="bg-[#CFF0DC] w-full md:pb-10 ">
+       <h1 class="text-3xl font-bold text-[#1f2937] text-center  md:pt-20 p-10">Our Impact</h1>
 
-     
+       <div class="grid md:grid-cols-3  md:max-w-7xl mx-auto gap-7 pb-10">
 
-    <footer></footer>
+        <div class="bg-white space-y-2  py-5 md:px-6 rounded-lg text-center ">
+           <h1 class="font-semibold text-2xl text-[#15803D]">500K+</h1>
+           <p class="text-[text-[#1f2937]]">Trees Planted</p>
+        </div>
+        <div class="bg-white space-y-3  py-5 md:px-6 rounded-lg text-center ">
+           <h1 class="font-semibold text-2xl text-[#15803D]">120+ </h1>
+           <p class="text-[text-[#1f2937]]">Communities Involved</p>
+        </div>
+        <div class="bg-white space-y-3 py-5 md:px-6  rounded-lg text-center ">
+           <h1 class="font-semibold text-2xl text-[#15803D]">30+</h1>
+           <p class="text-[text-[#1f2937]]">Countries Reached</p>
+        </div>
+
+       </div>
+    </section>
+
+    <section class="w-full bg-[#166534] md:pb-20">
+        <h1 class="text-3xl  font-bold text-white text-center  md:pt-20 p-10">Plant a Tree Today</h1>
+
+        <div class=" md:max-w-2xl mx-auto flex justify-center items-center">
+            <div class="bg-[#15803D] px-10 w-full py-10 rounded-md">
+               <input class="w-full bg-white border-none text-gray-400 p-2 rounded-md" type="text" class="input" placeholder="Your Name"><br><br>
+               <input class="w-full bg-white border-none text-gray-400 p-2 rounded-md" type="email" class="input" placeholder="Your Email Address" />
+               <fieldset class="fieldset ">
+              <legend class="fieldset-legend"></legend>
+              <select class="select w-full">
+                <option class=" " disabled selected>Number of Trees</option>
+                <option>Chrome</option>
+                <option>FireFox</option>
+                <option>Safari</option>
+              </select>
+              <span class="label"></span>
+            </fieldset><br>
+             <button class=" bg-[#facc15] w-full text-[#15803d] py-2 px-3 rounded-2xl">Donate Now</button>
+
+            </div>
+        </div>
+    </section>
+        
+
+    <footer class="bg-[#14532D] p-7">
+       <h1 class="text-center text-white">© 2025 Green Earth. All Rights Reserved.</h1>
+    </footer>
+
+
+
+
+    <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<dialog id="modalDetails" class="modal">
+  <div class="modal-box">
+      <div id="modalContainer" class="space-y-3"></div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     
+
+
     <script src="./index.js"></script>
 
        

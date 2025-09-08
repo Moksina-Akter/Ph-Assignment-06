@@ -2,6 +2,9 @@
 const catagoryContainer = document.getElementById('catagoryContainer');
 const plantCardContainer = document.getElementById('card-container');
 const cartContainer = document.getElementById('cartContainer');
+const modalContainer = document.getElementById('modalContainer');
+const modalDetails = document.getElementById('modalDetails');
+const spinner = document.getElementById('spinner');
 
 
 //alltrees
@@ -16,7 +19,6 @@ const allTrees = () =>{
     })
 }
 
-//showAllTrees
 
 const showAllTrees = (allTrees)=>{
     //   console.log(allTrees);
@@ -31,7 +33,7 @@ const showAllTrees = (allTrees)=>{
                  <p>${tree.description}</p>
                 <div class="flex justify-between items-center">
                     <h2 class="bg-[#dcfce7] text-[#15803d] py-1 px-2 rounded-2xl">${tree.category}</h2>
-                   <h3>৳<span class="text-[#15803d]">${tree.price}</span></h3>
+                   <h3 class="text-[#15803d]">৳<span class="font-bold">${tree.price}</span></h3>
                </div>
               <button class="bg-[#15803d] w-full py-1 px-2 rounded-3xl text-white">Add to Cart</button>      
              </div>
@@ -52,17 +54,16 @@ const loadCategories = () => {
     })
 }
 
-//showCategory-part
 const showCategory = (categories) => {
         categories.forEach(category => {
             catagoryContainer.innerHTML += ` 
              
-                <li id="${category.id}" class="hover:bg-[#11d158] p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">${category.category_name}</li>
+                <li id="${category.id}" class="hover:bg-[#11d158] pl-5 md:p-1 rounded hover:text-[#ffffff] cursor-pointer text-[#1f2937]">${category.category_name}</li>
             `;
             
         });
         catagoryContainer.addEventListener('click', (event) => {
-                const allLi = document.querySelectorAll('li')
+                const allLi = document.querySelectorAll('li');
                 allLi.forEach(li => {
                     li.classList.remove('bg-[#15803d]')
                     li.classList.remove('text-[#ffffff]')
@@ -89,8 +90,6 @@ const plantCategory = (cardId) =>{
 }
 
 
-// showPlantCategory - part
-
  const showPlantCategory = (plants) => {
     plantCardContainer.innerHTML = "";
     plants.forEach( plant => {
@@ -99,7 +98,7 @@ const plantCategory = (cardId) =>{
                  <div class="h-[220px]">
                     <img class="w-full h-full rounded " src="${plant.image}" alt="">
                  </div>
-                 <h1 class="text-lg font-semibold">${plant.name}</h1>
+                 <h4 class="text-lg font-semibold">${plant.name}</h4>
                  <p>${plant.description}</p>
                 <div class="flex justify-between items-center">
                     <h2 class="bg-[#dcfce7] text-[#15803d] py-1 px-2 rounded-2xl">${plant.category}</h2>
@@ -112,8 +111,58 @@ const plantCategory = (cardId) =>{
   }
 
 
+//  details
+plantCardContainer.addEventListener('click', (e) => {
+    if (e.target.tagName === 'H4') {  
+        const id = e.target.parentNode.id;
+        details(id);
+    } 
+});
+
+const details = (id) => {
+    fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+       showDetails(data.plants); 
+    })
+    .catch(err => console.log(err));
+}
+
+const showDetails = (plant) => {
+   modalDetails.showModal();
+
+   modalContainer.innerHTML=`
+        <h4 class="font-bold text-xl">${plant.name}</h4>
+        <div class="h-[240px]">
+            <img class="w-full h-full rounded-lg" src="${plant.image}" alt="">
+        </div>
+        <h1><span class="font-bold">Category:</span> ${plant.category}</h1>
+        <h2><span class="font-bold">Price:</span> ৳${plant.price}</h2>
+        <p><span class="font-bold">Description:</span> ${plant.description}</p> 
+  `
+}
+
+
+//spinner
+const loading = () => {
+    if (loading) {
+        spinner.innerHTML = `
+           <span class="loading loading-dots loading-xs"></span>
+           <span class="loading loading-dots loading-sm"></span>
+           <span class="loading loading-dots loading-md"></span>
+           <span class="loading loading-dots loading-lg"></span>
+           <span class="loading loading-dots loading-xl"></span>
+        `;
+        spinner.classList.remove("hidden");
+    } else {
+        spinner.classList.add("hidden");
+    }
+}
+
+
  //cart part
 let allCart = [];
+
 plantCardContainer.addEventListener('click', (e) => {
     if (e.target.innerText === 'Add to Cart') {
         handleCart(e);
@@ -125,7 +174,6 @@ const handleCart = (e) => {
     const name = e.target.parentNode.childNodes[3].innerText;
     const price = e.target.parentNode.childNodes[7].childNodes[3].innerText;
     const id = e.target.parentNode.id;
-    // console.log(id)
 
     const isExist = allCart.find(item => item.id === id);
     if (!isExist) {
@@ -135,12 +183,12 @@ const handleCart = (e) => {
             id: id
         });
     }
-
     showCart(allCart);
-        // console.log(cart)
+
+     alert(`${name} has been added to the cart.`)
 }
 
-//show cart
+
 const showCart = (carts) => {
    cartContainer.innerHTML = '';
    carts.forEach ( cart => {
@@ -148,7 +196,7 @@ const showCart = (carts) => {
         <div class="bg-[#F0FDF4] mt-4 p-2 rounded flex justify-between items-center">
             <div> 
                 <h1 class="font-bold text-xl">${cart.name}</h1>
-                <p>${cart.price}</p>
+                <p class="text-gray-600">${cart.price} <span> × 1 </span></p>
             </div>
             <button onclick="handleDelete('${cart.id}')" class=" text-red-700">❌</button>
         </div>
@@ -159,20 +207,22 @@ const showCart = (carts) => {
 
 //handle delete part
 const handleDelete = (id) => {
-    // console.log(id.id)
-//    const removeCard = allCart.find(cart => cart.id === id);
-//    if (!removeCard) {
-//      allCart.push({name, price, id});
-//    } 
-
    const filtered = allCart.filter(carts => carts.id !== id);
    allCart = filtered;
    showCart(allCart);
 }
 
 
+
+//total
+
+
+
+
+
+
+
+
 loadCategories();
 allTrees()
-
-
 
