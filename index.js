@@ -22,7 +22,6 @@ const allTrees = () =>{
 
 
 const showAllTrees = (allTrees)=>{
-    //   console.log(allTrees);
       plantCardContainer.innerHTML ='';
        allTrees.forEach( tree => {
        plantCardContainer.innerHTML += `
@@ -109,6 +108,7 @@ const plantCategory = (cardId) =>{
              </div>
         `;
    })
+  
   }
 
 
@@ -138,7 +138,7 @@ const showDetails = (plant) => {
             <img class="w-full h-full rounded-lg" src="${plant.image}" alt="">
         </div>
         <h1><span class="font-bold">Category:</span> ${plant.category}</h1>
-        <h2><span class="font-bold">Price:</span> ৳${plant.price}</h2>
+        <h3><span class="font-bold">Price:</span> ৳${plant.price}</h3>
         <p><span class="font-bold">Description:</span> ${plant.description}</p> 
   `
 }
@@ -175,7 +175,7 @@ plantCardContainer.addEventListener('click', (e) => {
 const handleCart = (e) => {
     const name = e.target.parentNode.childNodes[3].innerText;
     const price = e.target.parentNode.childNodes[7].childNodes[3].innerText;
-    const priceFloat = parseFloat(price.replace('৳','').trim());
+    const priceFloat = parseInt(price.replace('৳','').trim());
     // console.log(price);
     const id = e.target.parentNode.id;
 
@@ -229,15 +229,6 @@ const handleDelete = (idDel) => {
    
    showCart(allCart);
 }
-
-
-
-//total
-
-
-
-
-
 
 
 

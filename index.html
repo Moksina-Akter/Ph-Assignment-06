@@ -56,7 +56,7 @@
 
     <main class="bg-[#F0FDF4]">
 
-       <div id="spinner" class="text-center ">
+       <div id="spinner" class="text-center hidden">
             
          </div>
 
@@ -75,9 +75,9 @@
          </div>
 
         <div class="md:col-span-2 bg-white h-full rounded-md p-3">
-            <div><h1 class="text-xl font-bold">Your Cart</h1></div>
+            <div><h1 class="text-xl font-bold md:text-left text-center">Your Cart</h1></div>
             <div id="cartContainer"> </div>
-            <div><h1 class="text-center mt-4 font-bold">Total: <span id="total">0</span> </h1></div>
+            <div><h1 class="flex justify-between items-center mt-4 font-bold">Total: <span id="total">0</span> </h1></div>
         </div>
 
        </section>
@@ -85,7 +85,7 @@
 
 
     <section class="md:max-w-4xl mx-auto mt-5 md:pb-28">
-        <h1 class="text-3xl font-bold text-[#1f2937] text-center  pt-20 p-10">About the Campaign</h1>
+        <h1 class="text-3xl font-bold text-[#1f2937] text-center  md:pt-20 p-10">About the Campaign</h1>
        <div class="md:flex justify-between items-center gap-9">
          <div class="md:w-1/2">
             <img class="w-full" src="./assets/about.png" alt="">
@@ -108,15 +108,15 @@
 
        <div class="grid md:grid-cols-3  md:max-w-7xl mx-auto gap-7 pb-10">
 
-        <div class="bg-white space-y-2  py-5 md:px-6 rounded-lg text-center ">
+        <div class="bg-white space-y-2 hover:bg-[#94e8b6]  py-5 md:px-6 rounded-lg text-center ">
            <h1 class="font-semibold text-2xl text-[#15803D]">500K+</h1>
            <p class="text-[text-[#1f2937]]">Trees Planted</p>
         </div>
-        <div class="bg-white space-y-3  py-5 md:px-6 rounded-lg text-center ">
+        <div class="bg-white space-y-3 hover:bg-[#94e8b6]  py-5 md:px-6 rounded-lg text-center ">
            <h1 class="font-semibold text-2xl text-[#15803D]">120+ </h1>
            <p class="text-[text-[#1f2937]]">Communities Involved</p>
         </div>
-        <div class="bg-white space-y-3 py-5 md:px-6  rounded-lg text-center ">
+        <div class="bg-white space-y-3 hover:bg-[#94e8b6]  py-5 md:px-6  rounded-lg text-center ">
            <h1 class="font-semibold text-2xl text-[#15803D]">30+</h1>
            <p class="text-[text-[#1f2937]]">Countries Reached</p>
         </div>
@@ -129,19 +129,19 @@
 
         <div class=" md:max-w-2xl mx-auto flex justify-center items-center">
             <div class="bg-[#15803D] px-10 w-full py-10 rounded-md">
-               <input class="w-full bg-white border-none text-gray-400 p-2 rounded-md" type="text" class="input" placeholder="Your Name"><br><br>
-               <input class="w-full bg-white border-none text-gray-400 p-2 rounded-md" type="email" class="input" placeholder="Your Email Address" />
+               <input class="w-full bg-white border-none text-gray-500 p-2 rounded-md" type="text" class="input" placeholder="Your Name"><br><br>
+               <input class="w-full bg-white border-none text-gray-500 p-2 rounded-md" type="email" class="input" placeholder="Your Email Address" />
                <fieldset class="fieldset ">
               <legend class="fieldset-legend"></legend>
               <select class="select w-full">
-                <option class=" " disabled selected>Number of Trees</option>
-                <option>Chrome</option>
-                <option>FireFox</option>
-                <option>Safari</option>
+                <option class=" " selected>Number of Trees</option>
+                <option>1 Tree - $5</option>
+                <option>5 Tree - $25</option>
+                <option>10 Tree - $50</option>
               </select>
               <span class="label"></span>
             </fieldset><br>
-             <button class=" bg-[#facc15] w-full text-[#15803d] py-2 px-3 rounded-2xl">Donate Now</button>
+             <button class=" bg-[#facc15] w-full text-[#15803d] py-2 px-3 rounded-3xl">Donate Now</button>
 
             </div>
         </div>
